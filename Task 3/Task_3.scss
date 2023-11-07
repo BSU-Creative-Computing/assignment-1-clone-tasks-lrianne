@@ -1,0 +1,120 @@
+$colors: #4e89ae #43658b #ed6663 #ffa372 ; /*Array of colors that will be used for the rows and circles*/
+$hover-color: #444;
+$head-foot: #8ccff7;
+
+
+@mixin center-elements ($screen-size) { /*Handles the centering of elements*/
+    width: $screen-size;
+    margin: auto;
+}
+@mixin min-breakpoint ($minwidth) {
+    @media screen and (min-width: $minwidth) {/*Handles media queries with minimum screen width given*/
+        @content;
+    }
+}
+@mixin breakpoint ($minwidth, $maxwidth){ /*Handles media queries with max and min screen widths given*/
+    @media screen and (min-width: $minwidth) and (max-width: $maxwidth){
+        @content;
+    }
+}
+@mixin max-breakpoint ($maxwidth) { /*Handles media queries with maximum screen width given*/
+    @media screen and (max-width: $maxwidth) {
+        @content;
+    }
+}
+
+body{margin: 0; background-color: #E2EFF1; }
+
+header{background-color: $head-foot;}
+.header_img{
+    margin: auto;
+    @include min-breakpoint(801px){ /*For Screen widths of 801 px and above*/
+        background-image: url(IMG/400.png); 
+        width: 400px; 
+        height: 400px;
+    }
+    @include breakpoint(481px,800px){/*For Screens that are 481px-800px wide */
+        background-image: url(IMG/300.png); 
+        width: 300px; 
+        height: 300px;
+    }
+    @include max-breakpoint(480px){/*For Screen widths of 480px and below */
+        background-image: url(IMG/200.png); 
+        width: 200px; 
+        height: 200px;
+    }
+}
+
+footer{
+    background-color: $head-foot;
+    height: 50px;
+}
+
+/*Section*/
+.container{
+    padding: 40px;
+    @include min-breakpoint(621px){ /*When screen width is above 621px circles will be displayed in one row(inline)*/
+        @include center-elements(400px);
+        .circles{
+            margin: 1%;
+            display: inline-block; 
+            vertical-align: middle;
+        }
+    }
+    @include max-breakpoint(620px){ /*When screen width is below 621px circles will appear as one column*/
+        @include center-elements(100px);
+        .circles{ /*Ensures that each of the circles are aligned to the center*/
+            margin: auto;
+            margin-bottom: 5%;
+        }
+    }
+}
+.rows{padding-top: 50px;}
+.circles:hover{background-color: $hover-color;}
+.row:hover{background-color: $hover-color;}
+
+/*Circles*/
+.smaller{
+    width: 70px;
+    height: 70px;
+    background-color: nth($colors, 1);
+    border-radius: 50%;
+}
+.small{
+    @extend .smaller; /*@extend allows for the same values and style seen in .smaller to be inherited*/
+    width: 80px;
+    height: 80px;
+    background-color: nth($colors, 2);
+}
+.medium{
+    @extend .smaller;
+    width: 90px;
+    height: 90px;
+    background-color: nth($colors, 3);
+}
+.large{
+    @extend .smaller;
+    width: 100px;
+    height: 100px;
+    background-color: nth($colors, 4);
+}
+
+/*Rows*/
+.one{
+    left: 0;
+    right: 0;
+    height: 40px;
+    background-color: nth($colors,1);/*nth selector allows for elements to be selected from the colors array through its index*/
+}
+.two{
+    @extend .one;
+    background-color: nth($colors,2);
+}
+.three{
+    @extend .one;
+    background-color: nth($colors,3);
+}
+.four{
+    @extend .one;
+    background-color: nth($colors,4);
+}
