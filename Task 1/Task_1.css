@@ -1,0 +1,77 @@
+body{
+    margin: 0; /*Removes default margins that are set in the webpage*/
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/*Navigation*/
+nav{margin: 2%;}
+
+/*Contents*/
+section{
+    margin-top: 1%;
+}
+.description{
+    margin: 2%; /*Adds margins on the text*/
+}
+.images{
+    display: flex; 
+    flex-wrap: wrap; /* Helped remove the spaces in between the images*/
+}
+
+/*Footer*/
+footer{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/*Media Queries*/
+/*On screens that go above 1024*/
+@media (min-width: 1025px){
+    body{
+        width: 1024px;
+        margin:auto;
+    }
+    .description{
+        font-size: 12px;
+    }
+    .images img{
+        width: 33.3%; /* Allows for three images to be displayed in a row*/
+    }    
+}
+
+/*On screen sizes that have a width of 801px to 1024px*/
+@media (min-width: 801px) and (max-width: 1024px){
+    body{
+        margin:auto;
+    }
+    .description{
+        width: 97%;
+    }
+    .images img{
+        width: 33.2%; /* Allows for three images to be displayed in a row*/
+    }
+}
+
+/*On screen sizes that have a width 481px to 800px*/
+@media (min-width: 481px) and (max-width: 800px){
+    nav img{width: 10%;}
+    body{
+        margin:auto;
+    }
+    .images img{
+        width: 50%; /* Allows for two images to be displayed in a row*/
+    }
+}
+
+/*On screen sizes that have a width of 480 and under*/
+@media (max-width: 480px){
+    nav img{width: 10%;}
+    body{
+        margin:auto;
+    }
+    .images img{
+        width: 100%; /* Image fills the width of the page*/
+    }
+}
